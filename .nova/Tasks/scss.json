@@ -1,0 +1,10 @@
+{
+  "actions" : {
+    "run" : {
+      "enabled" : true,
+      "script" : "sass --watch style.scss:style.css"
+    }
+  },
+  "identifier" : "143FA3F0-6EB4-45C7-93EC-9ACAE10600C3",
+  "persistent" : true
+}
