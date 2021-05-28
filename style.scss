@@ -89,19 +89,28 @@ html {
 
 body {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
-	min-height: 100%;
+	min-height: 100vh;
 	transition: color 0.2s, background-color 0.2s;
-	padding: 48px;
+	padding: 48px 48px 0;
 }
 
 main {
+	display: flex;
+	flex: 1 1 auto;
+	justify-content: center;
+	align-items: center;
+}
+
+.c-main__inner {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 	height: 450px;
+	margin-bottom: 48px;
 }
 
 h1 {
@@ -197,23 +206,14 @@ button {
 	cursor: pointer;
 	transition: 0s;
 	box-shadow: none;
-	overflow: auto;
 	-webkit-appearance: none;
 	   -moz-appearance: none;
 			appearance: none;
 
-	svg {
-		fill: #646970;
-	}
-
 	&:hover,
 	&:focus {
 		outline: none;
-		background-color: rgba($color-primary, 0.1);
-
-		svg {
-			fill: #000;
-		}
+		background-color: #eaf0fd;
 	}
 }
 
@@ -256,6 +256,17 @@ button {
 
 	&:not(:last-child) {
 		margin-bottom: 2px;
+	}
+
+	svg {
+		fill: #646970;
+	}
+
+	&:hover,
+	&:focus {
+		svg {
+			fill: #000;
+		}
 	}
 }
 
@@ -336,6 +347,102 @@ $test-gap: 10px;
 
 	.c-test {
 		width: $test-size;
+	}
+}
+
+
+
+// # Components: Recent Colors
+// -----------------------------------------------------------------------------
+
+.c-recent-checks {
+	flex: 0 0 auto;
+	text-align: center;
+
+	h2 {
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 0.5em;
+	}
+}
+
+.c-recent-checks__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.c-recent-check {
+	flex-direction: column;
+	width: 60px;
+	height: 65px;
+	margin-left: 1px;
+	margin-right: 1px;
+	padding-top: 0;
+	padding-bottom: 5px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	transform: translateY(5px);
+	transition: transform 0.2s;
+
+	&:hover,
+	&:focus {
+		transform: translateY(0);
+	}
+}
+
+
+
+// # Components: Tooltip
+// -----------------------------------------------------------------------------
+
+.c-tooltip {
+	position: relative;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+
+	&:hover,
+	&:focus {
+		.c-tooltip__popover {
+			display: flex;
+		}
+	}
+}
+
+.c-tooltip__popover {
+	display: none;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	color: #000;
+	background-color: #eaf0fd;
+	font-size: 0.75rem;
+	white-space: nowrap;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	min-height: 30px;
+	padding: 6px 12px 6px 0;
+	z-index: 900;
+}
+
+@media screen and (max-width: 580px) {
+	.c-tooltip {
+		border-radius: 4px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	.c-tooltip__popover {
+		left: auto;
+		right: 100%;
+		border-radius: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		padding: 6px 0 6px 12px;
 	}
 }
 
