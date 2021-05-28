@@ -197,6 +197,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		const hash = '#f=' + colorA + ',b=' + colorB;
 
+		document.title = 'Contrast Check (#' + colorA + ' - #' + colorB + ')';
+
 		if (history.pushState) {
 			history.pushState(null, null, hash);
 		}
