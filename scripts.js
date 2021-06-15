@@ -180,16 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 
 			contrastText.innerText = Math.floor(contrastRatio * 100) / 100;
-			updateMeta(colorA, colorB, results, contrastRatio);
 		}
-	}
-
-	function updateMeta(colorA, colorB, results, contrastRatio) {
-		document.querySelector('meta[property="og:url"]').setAttribute('content', `https://philbuchanan.com/contrast-check/#f=${ colorA },b=${ colorB }`);
-		document.querySelector('meta[property="og:title"]').setAttribute('content', `Contrast Check for #${ colorA } and #${ colorB }`);
-		document.querySelector('meta[property="og:description"]').setAttribute('content', `The colors #${ colorA } and #${ colorB } have a contrast ratio of ${ Math.floor(contrastRatio * 100) / 100 }.`);
-		document.querySelector('meta[name="twitter:data1"]').setAttribute('value', !!results.WCAG_AA ? '👍' : '👎');
-		document.querySelector('meta[name="twitter:data2"]').setAttribute('value', !!results.WCAG_AAA ? '👍' : '👎');
 	}
 
 	function updateHash() {
