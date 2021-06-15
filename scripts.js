@@ -185,17 +185,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function updateMeta(colorA, colorB, results, contrastRatio) {
-		let i = 1;
-
-		for (let key in tests) {
-			const passFail = !!results[key] ? '👍' : '👎';
-			document.querySelector('meta[name="twitter:data' + i + '"]').setAttribute('value', passFail);
-			i++;
-		}
-
-		document.querySelector('meta[name="twitter:data5"]').setAttribute('value', Math.floor(contrastRatio * 100) / 100);
 		document.querySelector('meta[property="og:url"]').setAttribute('content', `https://philbuchanan.com/contrast-check/#f=${ colorA },b=${ colorB }`);
-		document.querySelector('meta[property="og:title"]').setAttribute('content', `Color contrast check for #${ colorA } and #${ colorB }`);
+		document.querySelector('meta[property="og:title"]').setAttribute('content', `Contrast Check for #${ colorA } and #${ colorB }`);
+		document.querySelector('meta[property="og:description"]').setAttribute('content', `The colors #${ colorA } and #${ colorB } have a contrast ratio of ${ Math.floor(contrastRatio * 100) / 100 }.`);
+		document.querySelector('meta[name="twitter:data1"]').setAttribute('value', !!results.WCAG_AA ? '👍' : '👎');
+		document.querySelector('meta[name="twitter:data2"]').setAttribute('value', !!results.WCAG_AAA ? '👍' : '👎');
 	}
 
 	function updateHash() {
