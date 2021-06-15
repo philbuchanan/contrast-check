@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	const background = document.getElementById('background');
 	const contrastText = document.getElementById('contrast-ratio');
 	const tests = {
-		WCAG_AA:     document.getElementById('AA'),
 		WCAG_AA_LG:  document.getElementById('AA-LG'),
-		WCAG_AAA:    document.getElementById('AAA'),
+		WCAG_AA:     document.getElementById('AA'),
 		WCAG_AAA_LG: document.getElementById('AAA-LG'),
+		WCAG_AAA:    document.getElementById('AAA'),
 	};
 
 	function isValidSixDigitColorCode(hex) {
@@ -180,7 +180,22 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 
 			contrastText.innerText = Math.floor(contrastRatio * 100) / 100;
+			updateMeta(colorA, colorB, results, contrastRatio);
 		}
+	}
+
+	function updateMeta(colorA, colorB, results, contrastRatio) {
+		let i = 1;
+
+		for (let key in tests) {
+			const passFail = !!results[key] ? '👍' : '👎';
+			document.querySelector('meta[name="twitter:data' + i + '"]').setAttribute('value', passFail);
+			i++;
+		}
+
+		document.querySelector('meta[name="twitter:data5"]').setAttribute('value', Math.floor(contrastRatio * 100) / 100);
+		document.querySelector('meta[property="og:url"]').setAttribute('content', `https://philbuchanan.com/contrast-check/#f=${ colorA },b=${ colorB }`);
+		document.querySelector('meta[property="og:title"]').setAttribute('content', `Color contrast check for #${ colorA } and #${ colorB }`);
 	}
 
 	function updateHash() {
